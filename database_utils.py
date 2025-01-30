@@ -5,14 +5,30 @@ import sqlalchemy
 from data_cleaning import DataCleaning  # Importing at the top for clarity
 
 class DatabaseConnector:
+    """
+    To connect with and upload data to the database. 
+
+    Attributes:
+        credential_file (int): file containing the YAML credentials 
+        # TODO rewrite the attributes of the class so that when it 
+        # instantiated credential_file is optional
+    """
     def __init__(self, credential_file=0):
         """
         Initialize the DatabaseConnector with the path to the credentials file.
         """
         self.credential_file = credential_file
 
-    def read_db_creds(self):
-        """Reads the database credentials from a YAML file and returns them as a dictionary."""
+    def read_db_creds(self) -> None:
+        """
+        Reads the database credentials from a YAML file and 
+        returns them as a dictionary.
+        Args:
+
+        Return:
+            dict of YAML credentials  
+
+        """
         try:
             with open(self.credential_file, 'r') as file:
                 creds = yaml.safe_load(file)
@@ -26,7 +42,12 @@ class DatabaseConnector:
 
     
     def list_db_tables(self):
-        """Lists all the tables in the database."""
+        """
+        Lists all the tables in the database.
+        Args: 
+        Return:
+            prints the names of the tables in the database
+        """
         engine = self.init_db_engine()
         if not engine:
             print("Error: Could not initialize database engine.")
@@ -41,8 +62,15 @@ class DatabaseConnector:
         except Exception as e:
             print(f"Error retrieving table list: {e}")
             return None
+        
     def init_db_engine(self):
-        """Initializes and returns the SQLAlchemy engine using credentials from the YAML file."""
+        """
+        Initialises and returns the SQLAlchemy engine using 
+        credentials from the YAML file.
+        Args:
+        Return:
+            SQLAlchemy engine 
+        """
         creds = self.read_db_creds()  # Get credentials
         if not creds:
             print("Error: Could not read credentials.")

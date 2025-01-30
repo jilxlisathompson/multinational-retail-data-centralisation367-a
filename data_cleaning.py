@@ -4,9 +4,15 @@ import re
 
 
 class DataCleaning:
+    """
+    Class containing methods to clean data from each of the data sources
+
+    Attributes:
+        data_df (pd.DataFrame): DataFrame containing data to be cleaned
+    """
     def __init__(self, data_df):
         """
-        Initialize the DataCleaning class with a credential file.
+        Initialise the DataCleaning class with a credential file.
 
         Args:
             credential_file (str): Path to the credential file used by the DataExtractor.

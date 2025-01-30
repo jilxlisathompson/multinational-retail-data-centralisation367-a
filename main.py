@@ -3,7 +3,7 @@ import os
 import data_extraction, data_cleaning
 
 def main():
-    # Your code inside the main function goes here
+    # checking directory contents
     print("Hello, Welcome")
     print(os.listdir())
 
@@ -132,20 +132,6 @@ def main():
     db_connector = database_utils.DatabaseConnector()
     db_connector.upload_to_db(database_path= database_path, data_df=cleaned_df, table_name=table_name_card)
     
-
-
-    # # Print the first few rows of the DataFrame
-
-
-
-
-
-
-
-
-
-    
-
 
 
 
