@@ -83,7 +83,7 @@ class DataExtractor:
 
         return df
     
-    def list_number_of_stores(self, number_stores_endpoint, headers) -> any | None:
+    def list_number_of_stores(self, number_stores_endpoint, headers) -> None:
             """
             Args:
                 number_stores_endpoint (str): store endpoint number url 

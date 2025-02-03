@@ -1,33 +1,42 @@
 import database_utils
 import os 
 import data_extraction, data_cleaning
+import database_schema
+import psycopg2
+
 
 def main():
-    # checking directory contents
-    print("Hello, Welcome")
-    print(os.listdir())
+    # TODO: write functions to tidy up main()
 
-    # extractdata = database_utils.DatabaseConnector('login.yaml')
+    # # checking directory contents
+    # print("Hello, Welcome")
+    # print(os.listdir())
+
+    # # extractdata = database_utils.DatabaseConnector('login.yaml')
     data_extractor = data_extraction.DataExtractor('login.yaml')
     db_connector = database_utils.DatabaseConnector('login.yaml')
 
-    #     # Continue with your logic
-    tables = db_connector.list_db_tables()
-    print("Tables")
-    print(tables)
+    # #     # Continue with your logic
+    # tables = db_connector.list_db_tables()
+    # print("Tables")
+    # print(tables)
 
-    # # Read a specific table into a pandas DataFrame
+    # # # Read a specific table into a pandas DataFrame
     # table_name = 'legacy_users'  # Example table name
     # legacy_users_df = data_extractor.read_rds_table(table_name)
+    # print(legacy_users_df)
+
     # print(legacy_users_df.columns)
 
-    # # testing cleaning data 
+    # # # testing cleaning data 
     # data_to_clean = data_cleaning.DataCleaning(legacy_users_df)
     # cleaned_df = data_to_clean.clean_user_data()
+    # print("here is cleaned_df")
+    # print(cleaned_df)
     # table_name_new = "dim_users"
-    # # upload data
-    database_path = '/Users/eh19686/Documents/Bootcamps/AICore_Bootcamp/data_engineering/learning_sql/first_db/my_db/sales_data.db'
-    # # db_connector.upload_to_db(database_path= database_path, data_df=cleaned_df, table_name=table_name_new)
+    # # # upload data
+    database_path = 'Users/eh19686/Documents/Bootcamps/AICore_Bootcamp/data_engineering/learning_sql/first_db/my_db/sales_data.db'
+    # db_connector.upload_to_db(database_path= database_path, data_df=cleaned_df, table_name=table_name_new)
 
 
     # # # testing extracting data url from data_extraction
@@ -46,19 +55,19 @@ def main():
     number_stores_endpoint = "https://aqj7u5id95.execute-api.eu-west-1.amazonaws.com/prod/number_stores"
     
     # Instantiate the DataExtractor class and get the number of stores
-    # extractor = data_extraction.DataExtractor()
-    # number_of_stores = extractor.list_number_of_stores(number_stores_endpoint, headers)
-    #     # Print the result
-    # if number_of_stores is not None:
-    #     print(f"Number of stores: {number_of_stores}")
-    # else:
-    #     print("Failed to retrieve the number of stores.")
+    extractor = data_extraction.DataExtractor()
+    number_of_stores = extractor.list_number_of_stores(number_stores_endpoint, headers)
+        # Print the result
+    if number_of_stores is not None:
+        print(f"Number of stores: {number_of_stores}")
+    else:
+        print("Failed to retrieve the number of stores.")
 
     # 
     # Specify the retrieve store endpoint
     # retrieve_store_endpoint = "https://aqj7u5id95.execute-api.eu-west-1.amazonaws.com/prod/store_details/{store_number}"
     # data_extractor = data_extraction.DataExtractor(api_key='yFBQbwXe9J3sd6zWVAMrK6lcxxr0q1lr2PT6DDMX')
-    # # Call the method to retrieve all store data
+    # # # Call the method to retrieve all store data
     # stores_df = data_extractor.retrieve_stores_data(number_of_stores, retrieve_store_endpoint)
     # print(stores_df)
     # print(f"length of stores DataFrame: {len(stores_df)}")
@@ -66,7 +75,7 @@ def main():
     # cleaned_store_details = data_to_clean.clean_store_data(stores_df)
     # print("Heres the cleaned data")
     # print(cleaned_store_details)
-    # table_name_card = "dim_card_details"
+    # table_name_card = "dim_store_details"
     # db_connector = database_utils.DatabaseConnector()
     # db_connector.upload_to_db(database_path= database_path, data_df=cleaned_store_details, table_name=table_name_card)
 
@@ -104,33 +113,50 @@ def main():
     # db_connector.upload_to_db(database_path= database_path, data_df=cleaned_orders_df, table_name=table_name_card)
 
     # Task 8: Retrieve and clean the dates event data
-    extractor = data_extraction.DataExtractor()
-    date_details_endpoint = "https://data-handling-public.s3.eu-west-1.amazonaws.com/date_details.json"
-    number_of = extractor.list_number_of_data( date_details_endpoint, headers)
-    print("number of ")
-    print(number_of)
-        # Print the result
-    if number_of is not None:
-        print(f"Number of _______: {number_of}")
-    else:
-        print("Failed to retrieve the number of _______.")
+    # extractor = data_extraction.DataExtractor()
+    # date_details_endpoint = "https://data-handling-public.s3.eu-west-1.amazonaws.com/date_details.json"
+    # number_of = extractor.list_number_of_data( date_details_endpoint, headers)
+    # print("number of ")
+    # print(number_of)
+    #     # Print the result
+    # if number_of is not None:
+    #     print(f"Number of _______: {number_of}")
+    # else:
+    #     print("Failed to retrieve the number of _______.")
 
-    date_details_df = data_extractor.retrieve_date_details( date_details_endpoint)
-    print("here printing date_details df")
-    print(date_details_df)
-    data_to_clean = data_cleaning.DataCleaning(date_details_df)
-    cleaned_df = data_to_clean.clean_date_details(date_details_df)
-    print("here is cleaned data")
-    print(cleaned_df)
+    # date_details_df = data_extractor.retrieve_date_details( date_details_endpoint)
+    # print("here printing date_details df")
+    # print(date_details_df)
+    # data_to_clean = data_cleaning.DataCleaning(date_details_df)
+    # cleaned_df = data_to_clean.clean_date_details(date_details_df)
+    # print("here is cleaned data")
+    # print(cleaned_df)
 
     # print(f"length of stores DataFrame: {len(date_details_df)}")
     # data_to_clean = data_cleaning.DataCleaning(date_details_df)
-    # cleaned_date_details = data_to_clean.clean_store_data(date_details_df)
+    # cleaned_date_details = data_to_clean.clean_orders_data(date_details_df)
     # print("Heres the cleaned data")
     # print(cleaned_date_details)
-    table_name_card = "dim_date_times"
-    db_connector = database_utils.DatabaseConnector()
-    db_connector.upload_to_db(database_path= database_path, data_df=cleaned_df, table_name=table_name_card)
+    # table_name_card = "dim_date_times"
+    # db_connector = database_utils.DatabaseConnector()
+    # db_connector.upload_to_db(database_path= database_path, data_df=cleaned_date_details, table_name=table_name_card)
+
+
+        # Database connection details 
+    # DB_CONFIG = {
+    #     "dbname": "sales_data",
+    #     "user" : "postgres", # TODO
+    #     "host": "localhost",
+    #     "port": "5432"
+    # }
+
+    # db_manager = database_schema.DatabaseManager(DB_CONFIG)
+    # db_manager.connect()
+
+    # if db_manager.cursor:
+    #     db_manager.alter_orders_table()
+    
+    # db_manager.close()
     
 
 

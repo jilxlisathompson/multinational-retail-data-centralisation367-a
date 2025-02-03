@@ -1,8 +1,7 @@
 import yaml
 import pandas as pd
 from sqlalchemy import create_engine, inspect
-import sqlalchemy
-from data_cleaning import DataCleaning  # Importing at the top for clarity
+
 
 class DatabaseConnector:
     """
@@ -112,9 +111,12 @@ class DatabaseConnector:
             
 
             # Store the data in the SQLite table 'dim_users'
-            engine = create_engine(f"sqlite:///{database_path}")
+            # engine = create_engine(f"postgresql://{database_path}")
+            engine = create_engine("postgresql://postgres:@localhost:5432/sales_data")
+            print("Here in upload_db printing engine")
+            print(engine)
             data_df.to_sql(
-                name="dim_users",      # Name of the SQL table
+                name=table_name,      # Name of the SQL table
                 con=engine,            # Connection engine
                 if_exists="replace",   # Options: 'fail', 'replace', 'append'
                 index=False            # Prevent pandas from adding the DataFrame index as a column

@@ -219,10 +219,12 @@ class DataCleaning:
 
         - **Remove unwanted columns**
         """
-        columns_to_remove = ['first_name', 'last_name', '1']
-        data = data.drop(columns=columns_to_remove)
-        if data.shape[0] != 120123:
-            raise ValueError(f"Expected 441 rows after cleaning, but got {data.shape[0]} rows.")
+        print(f"columns here = {data.columns}")
+        # columns_to_remove = ['first_name', 'last_name', '1']
+        # data = data.drop(columns=columns_to_remove)
+        # TODO should be 120146 rows check cleaning
+        if data.shape[0] != 120146:
+            raise ValueError(f"Expected 120123 rows after cleaning, but got {data.shape[0]} rows.")
 
         return data
     
