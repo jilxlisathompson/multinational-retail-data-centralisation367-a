@@ -17,7 +17,7 @@ def main():
     db_connector = database_utils.DatabaseConnector('login.yaml')
 
     # #     # Continue with your logic
-    # tables = db_connector.list_db_tables()
+    tables = db_connector.list_db_tables()
     # print("Tables")
     # print(tables)
 
@@ -35,7 +35,7 @@ def main():
     # print(cleaned_df)
     # table_name_new = "dim_users"
     # # # upload data
-    database_path = 'Users/eh19686/Documents/Bootcamps/AICore_Bootcamp/data_engineering/learning_sql/first_db/my_db/sales_data.db'
+    # database_path = 'Users/eh19686/Documents/Bootcamps/AICore_Bootcamp/data_engineering/learning_sql/first_db/my_db/sales_data.db'
     # db_connector.upload_to_db(database_path= database_path, data_df=cleaned_df, table_name=table_name_new)
 
 
@@ -84,14 +84,14 @@ def main():
     # s3_url = "s3://data-handling-public/products.csv"
     # s3_df = data_extractor.extract_from_s3(s3_url)
 
-    # # Print the first few rows of the DataFrame
+    # # # # Print the first few rows of the DataFrame
     # print(s3_df.head())
 
-    # # Initialize the DataCleaning class and convert weights
+    # # # # Initialize the DataCleaning class and convert weights
     # data_to_clean = data_cleaning.DataCleaning(s3_df)
     # cleaned_products_df = data_to_clean.convert_product_weights(s3_df)
     # cleaned_products_df = data_to_clean.clean_products_data(cleaned_products_df)
-    # # upload
+    # # # upload
     # table_name_card = "dim_products"
     # db_connector = database_utils.DatabaseConnector()
     # db_connector.upload_to_db(database_path= database_path, data_df=cleaned_products_df, table_name=table_name_card)
@@ -143,20 +143,20 @@ def main():
 
 
         # Database connection details 
-    # DB_CONFIG = {
-    #     "dbname": "sales_data",
-    #     "user" : "postgres", # TODO
-    #     "host": "localhost",
-    #     "port": "5432"
-    # }
+    DB_CONFIG = {
+        "dbname": "sales_data",
+        "user" : "postgres", # TODO
+        "host": "localhost",
+        "port": "5432"
+    }
 
-    # db_manager = database_schema.DatabaseManager(DB_CONFIG)
-    # db_manager.connect()
+    db_manager = database_schema.DatabaseManager(DB_CONFIG)
+    db_manager.connect()
 
-    # if db_manager.cursor:
-    #     db_manager.alter_orders_table()
+    if db_manager.cursor:
+        db_manager.alter_dim_users()
     
-    # db_manager.close()
+    db_manager.close()
     
 
 
