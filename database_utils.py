@@ -9,8 +9,6 @@ class DatabaseConnector:
 
     Attributes:
         credential_file (int): file containing the YAML credentials 
-        # TODO rewrite the attributes of the class so that when it 
-        # instantiated credential_file is optional
     """
     def __init__(self, credential_file=0):
         """

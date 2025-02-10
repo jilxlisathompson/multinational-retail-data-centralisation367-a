@@ -1,0 +1,7 @@
+pandas
+requests
+pdfplumber
+boto3
+psycopg2
+sqlalchemy
+pytest

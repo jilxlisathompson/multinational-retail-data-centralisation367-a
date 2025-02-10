@@ -17,7 +17,7 @@ def main():
     db_connector = database_utils.DatabaseConnector('login.yaml')
 
     # #     # Continue with your logic
-    tables = db_connector.list_db_tables()
+    # tables = db_connector.list_db_tables()
     # print("Tables")
     # print(tables)
 
@@ -35,7 +35,7 @@ def main():
     # print(cleaned_df)
     # table_name_new = "dim_users"
     # # # upload data
-    # database_path = 'Users/eh19686/Documents/Bootcamps/AICore_Bootcamp/data_engineering/learning_sql/first_db/my_db/sales_data.db'
+    database_path = 'Users/eh19686/Documents/Bootcamps/AICore_Bootcamp/data_engineering/learning_sql/first_db/my_db/sales_data.db'
     # db_connector.upload_to_db(database_path= database_path, data_df=cleaned_df, table_name=table_name_new)
 
 
@@ -54,14 +54,14 @@ def main():
     # Endpoint for number of stores
     number_stores_endpoint = "https://aqj7u5id95.execute-api.eu-west-1.amazonaws.com/prod/number_stores"
     
-    # Instantiate the DataExtractor class and get the number of stores
+    # # Instantiate the DataExtractor class and get the number of stores
     extractor = data_extraction.DataExtractor()
     number_of_stores = extractor.list_number_of_stores(number_stores_endpoint, headers)
-        # Print the result
-    if number_of_stores is not None:
-        print(f"Number of stores: {number_of_stores}")
-    else:
-        print("Failed to retrieve the number of stores.")
+    #     # Print the result
+    # if number_of_stores is not None:
+    #     print(f"Number of stores: {number_of_stores}")
+    # else:
+    #     print("Failed to retrieve the number of stores.")
 
     # 
     # Specify the retrieve store endpoint
@@ -84,14 +84,14 @@ def main():
     # s3_url = "s3://data-handling-public/products.csv"
     # s3_df = data_extractor.extract_from_s3(s3_url)
 
-    # # # # Print the first few rows of the DataFrame
-    # print(s3_df.head())
+    # # # # # Print the first few rows of the DataFrame
+    # # print(s3_df.head())
 
-    # # # # Initialize the DataCleaning class and convert weights
+    # # # # # Initialize the DataCleaning class and convert weights
     # data_to_clean = data_cleaning.DataCleaning(s3_df)
     # cleaned_products_df = data_to_clean.convert_product_weights(s3_df)
     # cleaned_products_df = data_to_clean.clean_products_data(cleaned_products_df)
-    # # # upload
+    # # # # upload
     # table_name_card = "dim_products"
     # db_connector = database_utils.DatabaseConnector()
     # db_connector.upload_to_db(database_path= database_path, data_df=cleaned_products_df, table_name=table_name_card)
@@ -113,9 +113,9 @@ def main():
     # db_connector.upload_to_db(database_path= database_path, data_df=cleaned_orders_df, table_name=table_name_card)
 
     # Task 8: Retrieve and clean the dates event data
-    # extractor = data_extraction.DataExtractor()
-    # date_details_endpoint = "https://data-handling-public.s3.eu-west-1.amazonaws.com/date_details.json"
-    # number_of = extractor.list_number_of_data( date_details_endpoint, headers)
+    extractor = data_extraction.DataExtractor()
+    date_details_endpoint = "https://data-handling-public.s3.eu-west-1.amazonaws.com/date_details.json"
+    number_of = extractor.list_number_of_data( date_details_endpoint, headers)
     # print("number of ")
     # print(number_of)
     #     # Print the result
@@ -154,7 +154,7 @@ def main():
     db_manager.connect()
 
     if db_manager.cursor:
-        db_manager.alter_dim_users()
+        db_manager.alter_dim_date_times_table()
     
     db_manager.close()
     

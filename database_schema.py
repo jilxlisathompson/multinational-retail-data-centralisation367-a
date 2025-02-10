@@ -388,8 +388,8 @@ class DatabaseManager:
             # Step 2: Alter column data types
             alter_query = f"""
                 ALTER TABLE dim_card_details
-                ALTER COLUMN card_number TYPE VARCHAR({max_lengths['card_number']})),
-                ALTER COLUMN expiry_date TYPE VARCHAR({max_lengths['expiry_date']})),
+                ALTER COLUMN card_number TYPE VARCHAR({max_lengths['card_number']}),
+                ALTER COLUMN expiry_date TYPE VARCHAR({max_lengths['expiry_date']}),
                 ALTER COLUMN date_payment_confirmed TYPE DATE USING date_payment_confirmed::DATE;
             """
             self.cursor.execute(alter_query)
@@ -398,40 +398,6 @@ class DatabaseManager:
 
         except Exception as e:
             print("Error occurred:", e)
-    
-    # TODO: TASK 9: Finalising the star-based schema & adding the foreign keys to the orders table 
-    """
-    With the primary keys created in the tables prefixed with dim we can now create 
-    the foreign keys in the orders_table to reference the primary keys in the other tables.
-
-    Use SQL to create those foreign key constraints that reference the primary keys of the other table.
-
-    This makes the star-based database schema complete.
-
-
-    """
-    # TODO: TASK 10: Update the latest code changes to Github
-    """
-    Update your GitHub repository with the latest code changes from your local project. 
-    Start by staging your modifications and creating a commit. Then, push the changes to your GitHub repository.
-
-    Additionally, document your progress by adding to your GitHub README file. 
-    You can refer to the relevant lesson in the prerequisites for this task for more information.
-
-    At minimum, your README file should contain the following information:
-
-    Project Title
-    Table of Contents, if the README file is long
-    A description of the project: what it does, the aim of the project, and what you learned
-    Installation instructions
-    Usage instructions
-    File structure of the project
-    License information
-    You don't have to write all of this at once, but make sure to update your README file as you go along, 
-    so that you don't forget to add anything.
-
-
-    """
 
 
 
