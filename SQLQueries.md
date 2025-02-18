@@ -1,5 +1,7 @@
 This file contains the SQL queries in this project 
-## Task 1: How many stores does the business have and in how many countries. Query to get countries the business operates in and the country with the most physical stores
+## Task 1: How many stores does the business have and in how many countries. 
+- Query to get countries the business operates in and the country with the most physical stores
+  
 ``` SELECT * FROM dim_store_details;
 WITH store_counts AS (
     SELECT country_code, COUNT(*) AS store_count
@@ -14,11 +16,14 @@ FROM store_counts
 ORDER BY store_count DESC
 LIMIT 3;
 ```
+- use ARRAY_AGG to group data in a structured list
 
 ### RESULT of QUERY
 ![image](https://github.com/user-attachments/assets/c87e0170-8f0c-4087-a125-54a29e63f106)
 
-## TASK 2: Which locations currently have the most stores. Query to get locations with the most stores
+## TASK 2: Which locations currently have the most stores. 
+- Query to get locations with the most stores
+  
 ``` SELECT locality, COUNT(*) AS store_count
 FROM dim_store_details
 GROUP BY locality
@@ -29,7 +34,8 @@ LIMIT 7;
 ### RESULT of QUERY
 ![image](https://github.com/user-attachments/assets/9c3b869c-61b7-4c0a-a466-4448518c25ba)
 
-## TASK 3: Which months produced the largest amount of sales. Query to find the months with the most sales
+## TASK 3: Which months produced the largest amount of sales. 
+- Query to find the months with the most sales
 
 ``` SELECT 
     d.month, 
@@ -45,18 +51,10 @@ LIMIT 6;
 ### RESULT of QUERY
 ![image](https://github.com/user-attachments/assets/ec1e4a65-3696-4539-b0f9-9762ed6cedf2)
 
-## TASK 4: How many sales are coming from online. The company is looking to increase its online sales. They want to know how many sales are happening online vs offline.
-``` SELECT 
-    COUNT(o.product_code) AS numbers_of_sales,
-    SUM(o.product_quantity) AS product_quantity_count,
-    CASE 
-        WHEN o.store_code IS NULL OR o.store_code = 'WEB' THEN 'Web' 
-        ELSE 'Offline' 
-    END AS location
-FROM orders_table o
-JOIN dim_products p ON o.product_code = p.product_code
-GROUP BY location
-ORDER BY product_quantity_count DESC;
+## TASK 4: How many sales are coming from online? 
+- The company is looking to increase its online sales. They want to know how many sales are happening online vs. offline.
+
+```
 WITH sales_data AS (
     SELECT 
         o.user_uuid,
@@ -92,14 +90,14 @@ GROUP BY sales_channel;
 
 ``` SELECT  dim_date_times.year,
 		dim_date_times.month, 
-		round(SUM(orders_table.product_quantity*dim_products.product_price)) AS revenue
+		round(SUM(orders_table.product_quantity * dim_products.product_price)) AS revenue
 FROM orders_table
 	JOIN dim_date_times    ON  orders_table.date_uuid    = dim_date_times.date_uuid
 	JOIN dim_products      ON  orders_table.product_code = dim_products.product_code
 	JOIN dim_store_details ON orders_table.store_code    = dim_store_details.store_code
 GROUP BY 	dim_date_times.month,
 			dim_date_times.year
-ORDER BY    SUM(orders_table.product_quantity*dim_products.product_price)  DESC
+ORDER BY    SUM(orders_table.product_quantity * dim_products.product_price)  DESC
 LIMIT 10;
 ```
 
