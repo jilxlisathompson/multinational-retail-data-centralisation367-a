@@ -13,10 +13,10 @@ By answering these questions, the project will help the business optimise its st
 
 ## Project Utils 
 1. Data Extraction
-\\
-DataExtractor is a Python utility class designed for extracting data from various sources, including relational databases, PDFs, APIs, and AWS S3 buckets. It provides methods for retrieving and processing data, returning it in a standardised Pandas DataFrame format for easy analysis and manipulation.
 
-Features:
+  DataExtractor is a Python utility class designed for extracting data from various sources, including relational databases, PDFs, APIs, and AWS S3 buckets. It provides methods for retrieving and processing data, returning it in a standardised Pandas DataFrame format for easy analysis and manipulation.
+
+### Features:
 Extract Data from RDS: Retrieve tables from a relational database and convert them into Pandas DataFrames.
 Extract Data from PDFs: Download a PDF from a URL and extract tabular data using pdfplumber.
 Retrieve Store Data: Fetch store information from an API by querying an endpoint and parsing the response.
@@ -26,7 +26,7 @@ Retrieve Event Data: Fetch event date details from a specified API.
 3. Database Cleaning
 The DataCleaning class is a utility for cleaning and processing data in pandas DataFrames. It provides several methods to clean data from different sources, including user data, card details, store data, products, orders, and date details. Each method is tailored to handle common cleaning tasks such as handling missing values, removing duplicates, converting data types, and performing specific data transformations.
 
-Features:
+### Features:
 Clean User Data: Replaces "NULL" strings with NaN, removes rows with missing values, and ensures proper date formatting.
 Clean Card Data: Handles "NULL" values, removes duplicates, and processes non-numeric card numbers.
 Clean Store Data: Cleans store details, converts date columns, and processes staff numbers.
@@ -37,18 +37,19 @@ Clean Date Details: Processes date-related data by converting day, month, and ye
 
 5. Database Utils
 The DatabaseConnector class is designed to facilitate seamless interaction with relational databases. It provides functionalities to:
+  - Connect to the database using credentials stored in a YAML file
+  - List all tables in the database
+  - Upload data from a pandas DataFrame to the database
 
-Connect to the database using credentials stored in a YAML file
-List all tables in the database
-Upload data from a pandas DataFrame to the database
-Features:
+### Features:
 Flexible Credential Management: You can provide the path to a YAML credentials file or opt for default credentials.
 Database Table Listing: Easily list all tables in the connected database using list_db_tables.
 Data Upload: Upload data from a pandas DataFrame to a specified database table using upload_to_db.
 
 7. Database Schema
 The DatabaseManager class handles database connections and performs data type alterations on various tables. The methods implemented in this class assist in updating data types to reflect the required schema, handle data clean-up (such as removing unwanted characters), and perform column transformations to ensure optimal data integrity.
-Key Functions:
+
+### Key Functions:
 connect(): Establishes a connection to the PostgreSQL database using the provided configuration dictionary.
 close(): Closes the cursor and connection to the database, ensuring that all resources are released.
 get_max_length(column_name: str, table_name: str): Calculates the maximum length of values in a specified column, ensuring that VARCHAR columns are properly sized.
@@ -58,6 +59,7 @@ alter_dim_store_details(): Merges latitude columns and updates the data types fo
 alter_dim_products(): Cleans up the dim_products table by removing unwanted characters (like the £ sign) and adding a weight_class column based on predefined weight ranges.
 alter_dim_products2(): Renames columns and alters the data types of the columns in the dim_products table to ensure they conform to the required types.
 alter_dim_date_times_table(): Alters the dim_date_times table to adjust the data types of date-related columns.
+
 ## Installation instructions
 To get started with the project, follow these steps to install all the required dependencies:
 
