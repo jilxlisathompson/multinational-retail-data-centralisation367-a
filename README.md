@@ -151,12 +151,13 @@ cleaned_products = cleaner.clean_products_data(products_df)
   - Enhanced understanding of the flow of data from different sources to processing environments, preparing for more complex data engineering tasks.
 
 ## File structure of the project
-multinational-retail-data-centralisation367
+``` multinational-retail-data-centralisation367
 |-> data_extraction.py
 |-> data_cleaning.py
 |-> database_utils.py
 |-> database_schema.py
 |-> test_data_cleaning.py
 |-> requirements.txt
+```
 
 ## License information
