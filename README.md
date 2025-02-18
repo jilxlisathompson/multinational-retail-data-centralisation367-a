@@ -13,6 +13,7 @@ By answering these questions, the project will help the business optimise its st
 
 ## Project Utils 
 1. Data Extraction
+\\
 DataExtractor is a Python utility class designed for extracting data from various sources, including relational databases, PDFs, APIs, and AWS S3 buckets. It provides methods for retrieving and processing data, returning it in a standardised Pandas DataFrame format for easy analysis and manipulation.
 
 Features:
